@@ -332,7 +332,14 @@ decode(nil, _, _) -> nil;
 decode(false, _, _) -> false;
 decode(true, _, _) -> true;
 decode(B, _, _) when is_binary(B) -> B;
-decode(N, _, _) when is_number(N) -> N;
+decode(Number, _, _) when is_number(Number) ->
+    Integer = trunc(Number),
+    case Number - Integer of
+        0.0 ->
+            Integer;
+        _ ->
+            Number
+    end;
 decode(#tref{i=N}, St, In) ->
     decode_table(N, St, In);
 decode(#erl_func{code=Fun}, _, _) -> Fun;
