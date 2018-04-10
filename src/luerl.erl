@@ -310,7 +310,8 @@ encode(F, St) when is_function(F, 1) ->
 		 encode_list(Res, State)
 	 end,
     {#erl_func{code=F1}, St};
-encode(_, _) -> error(badarg).			%Can't encode anything else
+encode(F, St) ->
+    error({badarg, F, St}).			%Can't encode anything else
 
 %% decode_list([LuerlTerm], State) -> [Term].
 %% decode(LuerlTerm, State) -> Term.
