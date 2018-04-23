@@ -57,11 +57,17 @@ date(_, St) ->
     {{Ye,Mo,Da},{Ho,Mi,Sec}} = calendar:local_time(),
     Str = io_lib:fwrite("~w-~.2.0w-~.2.0w ~.2.0w:~.2.0w:~.2.0w",
 			[Ye,Mo,Da,Ho,Mi,Sec]),
-    {[iolist_to_binary(Str)],St}.
+    {[iolist_to_binary(Str)], St}.
 
 difftime([A1,A2|_], St) ->
     {[A2-A1],St}.
 
-time(_, St) ->					%Time since 1 Jan 1970
-    {Mega,Sec,Micro} = os:timestamp(),
-    {[1.0e6*Mega+Sec+Micro*1.0e-6],St}.
+%% time(_, St) ->					%Time since 1 Jan 1970
+%%     {Mega,Sec,Micro} = os:timestamp(),
+%%     {[1.0e6*Mega+Sec+Micro*1.0e-6],St}.
+
+
+time(_, St) -
+    %Time since 1 Jan 1970
+    erlang:system_time(seconds).
+
