@@ -67,7 +67,7 @@ difftime([A1,A2|_], St) ->
 %%     {[1.0e6*Mega+Sec+Micro*1.0e-6],St}.
 
 
-time(_, St) -
+time(_, St) ->
     %Time since 1 Jan 1970
     erlang:system_time(seconds).
 
