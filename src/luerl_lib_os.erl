@@ -69,5 +69,5 @@ difftime([A1,A2|_], St) ->
 
 time(_, St) ->
     %Time since 1 Jan 1970
-    erlang:system_time(seconds).
+    {[erlang:system_time(seconds)], St}.
 
