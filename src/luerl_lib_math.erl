@@ -233,7 +233,7 @@ random(As, #luerl{rand=S0}=St) ->
 	[] ->					%0.0 - 1.0
 	    {R,S1} = ?RAND_UNIFORM(S0),
 	    {[R],St#luerl{rand=S1}};
-	[M] when M > 1 ->
+	[M] when M >= 1 ->
 	    {R,S1} = ?RAND_UNIFORM(M, S0),
 	    {[float(R)],St#luerl{rand=S1}};
 	[M,N] when N > M ->
